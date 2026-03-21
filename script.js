@@ -98,7 +98,7 @@ const translations = {
 let currentLang = localStorage.getItem('lang') || 'ar';
 let isDarkMode = localStorage.getItem('theme') === 'dark';
 
-const WA_NUMBER = "201091317870";
+const WA_NUMBER = "201091010297";
 
 const e = React.createElement;
 
