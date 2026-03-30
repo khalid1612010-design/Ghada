@@ -133,10 +133,25 @@ function applyTheme(dark) {
     }
 }
 
+window.setInitialLanguage = function(lang) {
+    const overlay = document.getElementById('language-overlay');
+    if (overlay) overlay.classList.add('hidden');
+    sessionStorage.setItem('sessionLangSelected', 'true');
+    currentLang = lang;
+    applyLanguage(lang);
+    window.dispatchEvent(new CustomEvent('languageChanged', { detail: lang }));
+};
+
 // 3. React Components matching Glassmorphism Controls
 function HeaderActions() {
     const [lang, setLang] = React.useState(currentLang);
     const [theme, setTheme] = React.useState(isDarkMode);
+
+    React.useEffect(() => {
+        const handleLangChange = (e) => setLang(e.detail);
+        window.addEventListener('languageChanged', handleLangChange);
+        return () => window.removeEventListener('languageChanged', handleLangChange);
+    }, []);
 
     const toggleLang = () => {
         const nextLang = lang === 'ar' ? 'en' : (lang === 'en' ? 'de' : 'ar');
@@ -189,6 +204,12 @@ function FloatingWhatsApp() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Hide overlay if language was already selected in session
+    if (sessionStorage.getItem('sessionLangSelected')) {
+        const overlay = document.getElementById('language-overlay');
+        if (overlay) overlay.classList.add('hidden');
+    }
+
     applyLanguage(currentLang);
     applyTheme(isDarkMode);
 

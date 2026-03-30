@@ -455,3 +455,56 @@ body[dir="ltr"] .scroll-to-top {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* Language Selection Overlay */
+.lang-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--card-bg);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.6s ease, visibility 0.6s;
+}
+
+.lang-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+html.hide-lang-overlay .lang-overlay {
+    display: none !important;
+}
+
+.lang-overlay-content {
+    text-align: center;
+    padding: 40px;
+    max-width: 90%;
+    width: 380px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-icons {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.lang-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.lang-buttons .glass-btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 1.2rem;
+    padding: 12px;
+}

@@ -34,8 +34,32 @@
       "url": "https://example.com"
     }
     </script>
+    <script>
+        if (sessionStorage.getItem('sessionLangSelected')) {
+            document.documentElement.classList.add('hide-lang-overlay');
+        }
+    </script>
 </head>
 <body>
+
+    <!-- Language Selection Overlay -->
+    <div id="language-overlay" class="lang-overlay">
+        <div class="lang-overlay-content glass-card section-reveal visible">
+            <div class="welcome-icons">
+                <i class="fas fa-globe"></i>
+            </div>
+            <h3 style="line-height: 1.8; margin-bottom: 25px;">
+                Wähle eine Sprache<br>
+                <span style="font-size: 0.9em; color: var(--text-muted)">Choose a Language</span><br>
+                <span style="font-size: 0.9em; color: var(--text-muted)">اختر لغة</span>
+            </h3>
+            <div class="lang-buttons">
+                <button class="glass-btn primary" onclick="setInitialLanguage('de')" style="margin-bottom: 12px; display: flex; justify-content: center; width: 100%;">Deutsch</button>
+                <button class="glass-btn primary" onclick="setInitialLanguage('en')" style="margin-bottom: 12px; display: flex; justify-content: center; width: 100%;">English</button>
+                <button class="glass-btn primary" onclick="setInitialLanguage('ar')" style="display: flex; justify-content: center; width: 100%;">عربي</button>
+            </div>
+        </div>
+    </div>
 
     <!-- React Controls (Language / Theme) -->
     <div id="react-header-root"></div>
